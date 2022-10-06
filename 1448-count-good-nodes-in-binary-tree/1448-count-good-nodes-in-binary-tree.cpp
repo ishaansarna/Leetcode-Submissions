@@ -10,19 +10,23 @@
  * };
  */
 class Solution {
-    int ans;
-    void help(TreeNode* root, int h) {
-        if (!root)
-            return;
-        if (root->val >= h)
-            ans++;
-        help (root->left, max(h, root->val));
-        help (root->right, max(h, root->val));
-    }
 public:
     int goodNodes(TreeNode* root) {
-        ans = 0;
-        help(root, INT_MIN);
+        int ans = 0;
+        if (!root)
+            return 0;
+        queue<pair<TreeNode*, int>> q;
+        q.push(make_pair(root, root->val));
+        while (!q.empty()) {
+            auto p = q.front();
+            q.pop();
+            if (p.first->val >= p.second)
+                ans++;
+            if (p.first->left)
+                q.push(make_pair(p.first->left, max(p.second, p.first->val)));
+            if (p.first->right)
+                q.push(make_pair(p.first->right, max(p.second, p.first->val)));
+        }
         return ans;
     }
 };
