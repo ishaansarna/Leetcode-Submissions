@@ -2,20 +2,18 @@ class Solution {
     int nc, nr;
     int dfs(vector<vector<int>>& grid, vector<vector<int>>& visited, int i, int j) {
         int ans = 0;
-        if (visited[i][j] == 1)
-            return ans;
         visited[i][j] = 1;
         ans = 1;
-        if (j-1 >= 0 && grid[i][j-1] == 1) {
+        if (j-1 >= 0 && grid[i][j-1] == 1 && visited[i][j-1] == 0) {
             ans += dfs(grid, visited, i, j-1);
         }
-        if (i-1 >= 0 && grid[i-1][j] == 1) {
+        if (i-1 >= 0 && grid[i-1][j] == 1 && visited[i-1][j] == 0) {
             ans += dfs(grid, visited, i-1, j);
         }
-        if (j+1 < nc && grid[i][j+1] == 1) {
+        if (j+1 < nc && grid[i][j+1] == 1 && visited[i][j+1] == 0) {
             ans += dfs(grid, visited, i, j+1);
         }
-        if (i+1 < nr && grid[i+1][j] == 1) {
+        if (i+1 < nr && grid[i+1][j] == 1 && visited[i+1][j] == 0) {
             ans += dfs(grid, visited, i+1, j);
         }
         return ans;
