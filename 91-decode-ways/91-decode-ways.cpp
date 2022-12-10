@@ -1,5 +1,5 @@
 class Solution {
-    map<int, int> dp;
+    unordered_map<int, int> dp;
     int help(string s, int i) {
         int ans = 0;
         if (dp.find(i) != dp.end())
