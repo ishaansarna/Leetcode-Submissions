@@ -38,10 +38,7 @@ public:
             else 
                 return false;
         }
-        if (node->end)
-            return true;
-        else
-            return false;
+        return node->end;
     }
     
     bool startsWith(string prefix) {
